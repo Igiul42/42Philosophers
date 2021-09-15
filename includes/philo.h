@@ -5,6 +5,7 @@
 # include <unistd.h>
 # include <pthread.h>
 # include <stdlib.h>
+# include <time.h>
 
 typedef enum e_status
 {
