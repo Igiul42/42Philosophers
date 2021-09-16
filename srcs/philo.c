@@ -6,18 +6,19 @@
 /*   By: ldalle-a <ldalle-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 16:43:12 by ldalle-a          #+#    #+#             */
-/*   Updated: 2021/09/15 17:45:01 by ldalle-a         ###   ########.fr       */
+/*   Updated: 2021/09/16 11:25:56 by ldalle-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-long	ft_time()
+void	philo_cycle(t_philo *philo)
 {
-	struct timeval tv;
-
-    gettimeofday(&tv,NULL);
-    return (((long)tv.tv_sec) * 1000) + (tv.tv_usec / 1000);
+	lock_forks(philo);
+	eat(philo);
+	unlock_fork(philo);
+	think(philo);
+	usleep(100);
 }
 
 void	*death_watch(void *arg)
@@ -26,7 +27,7 @@ void	*death_watch(void *arg)
 
 	philo = (t_philo *)arg;
 	if (philo->id == 3)
-		printf("\tCapo lo abbiamo trovato!! %d\n", philo->id);
+
 	return (0);
 }
 
@@ -36,10 +37,16 @@ void	*routine(void *arg)
 	pthread_t	death;
 
 	philo = (t_philo*)arg;
-		//printf("\tCapo lo abbiamo trovato!! %d\n", philo->id);
-	pthread_create(&death, NULL, &death_watch, philo);
-	
-	return (0);
+	printf("\tPrimo thread!! %d\n", philo->id);
+	if (pthread_create(&death, NULL, &death_watch, philo) != 0)
+		printf("Failde create");										//sistemare il return
+	if (philo->main->nb_meal > 0)
+		while (is_alive(philo) && is_hungry(philo))
+			philo_cycle(philo);
+	else
+		while (is_alive(philo))
+			philo_cycle(philo);
+	return ((void *) 0);
 }
 
 
@@ -54,8 +61,10 @@ void	launch_threads(t_main *main)
 	while (++i < main->n_philo)
 	{	
 		philo = &main->philo[i];
-		pthread_create(&main_thread, NULL, &routine, (void *)philo);	//manca controllo sul create != 0
+		if (pthread_create(&main_thread, NULL, &routine, (void *)philo) != 0)
+			printf("Failed create main thread");								//sistemare il return
 		pthread_detach(main_thread);
+		usleep(100);
 	}
 }
 

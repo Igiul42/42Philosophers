@@ -6,11 +6,19 @@
 /*   By: ldalle-a <ldalle-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 16:43:16 by ldalle-a          #+#    #+#             */
-/*   Updated: 2021/09/15 16:43:18 by ldalle-a         ###   ########.fr       */
+/*   Updated: 2021/09/16 10:41:45 by ldalle-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
+
+long	ft_time()
+{
+	struct timeval tv;
+
+    gettimeofday(&tv,NULL);
+    return (((long)tv.tv_sec) * 1000) + (tv.tv_usec / 1000);
+}
 
 int	ft_atoi(const char *nptr)
 {
