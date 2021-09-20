@@ -6,18 +6,18 @@
 /*   By: ldalle-a <ldalle-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 16:42:56 by ldalle-a          #+#    #+#             */
-/*   Updated: 2021/09/15 16:43:05 by ldalle-a         ###   ########.fr       */
+/*   Updated: 2021/09/20 12:01:07 by ldalle-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-int		init_mutex(t_main *main)
+int	init_mutex(t_main *main)
 {
 	int	i;
 
 	i = -1;
-	while (++i < main->n_philo)
+	while (++i < main->nb_philo)
 		pthread_mutex_init(&main->forks[i], NULL);
 	pthread_mutex_init(&main->finished_meal, NULL);
 	pthread_mutex_init(&main->printer, NULL);
@@ -25,15 +25,15 @@ int		init_mutex(t_main *main)
 	return (1);
 }
 
-int		init_philos(t_main	*main)
+int	init_philos(t_main	*main)
 {
 	int	i;
-	
+
 	i = -1;
-	main->philo = malloc(sizeof(pthread_mutex_t) * main->n_philo);
+	main->philo = malloc(sizeof(pthread_mutex_t) * main->nb_philo);
 	if (!main->philo)
 		return (0);
-	while (++i < main->n_philo)
+	while (++i < main->nb_philo)
 	{
 		main->philo[i].id = i + 1;
 		main->philo[i].status = 0;
@@ -42,16 +42,16 @@ int		init_philos(t_main	*main)
 		main->philo[i].start_eat = 0;
 		main->philo[i].left_fork = &main->forks[i];
 		if (i == 0)
-			main->philo[i].right_fork = &main->forks[main->n_philo - 1];
+			main->philo[i].right_fork = &main->forks[main->nb_philo - 1];
 		else
 			main->philo[i].right_fork = &main->forks[i - 1];
 	}
 	return (1);
 }
 
-int		init_forks(t_main *main)
+int	init_forks(t_main *main)
 {
-	main->forks = malloc(sizeof(pthread_mutex_t) * main->n_philo);
+	main->forks = malloc(sizeof(pthread_mutex_t) * main->nb_philo);
 	if (!main->forks)
 	{
 		//free_philo(main);
@@ -60,7 +60,7 @@ int		init_forks(t_main *main)
 	return (1);
 }
 
-int		check_parameters(int argc, char **argv)
+int	check_parameters(int argc, char **argv)
 {
 	int	i;
 
@@ -77,7 +77,7 @@ int	init(t_main *main, int argc, char **argv)
 {
 	if (check_parameters(argc, argv) == 1)
 	{
-		main->n_philo = ft_atoi(argv[1]);
+		main->nb_philo = ft_atoi(argv[1]);
 		main->t_die = ft_atoi(argv[2]);
 		main->t_eat = ft_atoi(argv[3]);
 		main->t_sleep = ft_atoi(argv[4]);
@@ -85,7 +85,7 @@ int	init(t_main *main, int argc, char **argv)
 		if (argc == 6)
 			main->nb_meal = ft_atoi(argv[5]);
 		main->nb_finished_meal = 0;
-		main->dead = 0;
+		main->dead_found = 0;
 		main->philo = NULL;
 		main->forks = NULL;
 		if ((init_forks(main) && init_philos(main) && init_mutex(main) == 0))

@@ -8,7 +8,9 @@ LIB		=	-pthread
 
 SRCS	=	srcs/philo.c \
 			srcs/utils.c \
-			srcs/init.c
+			srcs/philo_utils.c \
+			srcs/init.c \
+			srcs/libft_utils.c \
 
 HEADER	=	-I /includes
 

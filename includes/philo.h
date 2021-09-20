@@ -1,5 +1,5 @@
 #ifndef PHILO_H
-#define PHILO_H
+# define PHILO_H
 
 # include <stdio.h>
 # include <unistd.h>
@@ -46,9 +46,17 @@ typedef struct s_main
 	int				end;
 }				t_main;
 
-int		ft_isnumb(char *num);		/* 					*/
-int		ft_atoi(const char *nptr);	/*		utils.c		*/
-long	ft_time();					/*					*/
-int		init(t_main *main, int argc, char **argv); /* init.c */
+/*		libft_utils.c		*/
+int		ft_isnumb(char *num);
+int		ft_atoi(const char *nptr);
+char	*ft_itoa(long n);
+/*		utils.c				*/
+long	ft_time(void);
+long	elapsed_time(long starter);
+void	select_message(t_philo *philo);
+/*		init.c				*/
+int		init(t_main *main, int argc, char **argv);
+/*		cycle.c				*/
+void	philo_cycle(t_philo *philo);
 
 #endif
