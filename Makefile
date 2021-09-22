@@ -11,6 +11,7 @@ SRCS	=	srcs/philo.c \
 			srcs/philo_utils.c \
 			srcs/init.c \
 			srcs/libft_utils.c \
+			srcs/cycle.c \
 
 HEADER	=	-I /includes
 

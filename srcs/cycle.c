@@ -44,6 +44,17 @@ int	has_eaten_enough(t_philo *philo)
 	return (0);
 }
 
+static	void	unlock_forks(t_philo *philo)
+{
+	philo->status = SLEEPING;
+	pthread_mutex_unlock(philo->right_fork);
+	if (philo->main->nb_philo == 1)
+		return ;
+	pthread_mutex_unlock(philo->left_fork);
+	select_message(philo);
+	ft_usleep(philo->main->t_sleep);
+}
+
 static	void	eat(t_philo *philo)
 {
 	philo->status = EATING;
@@ -53,17 +64,23 @@ static	void	eat(t_philo *philo)
 	philo->meal_taken++;
 	if (philo->main->nb_meal > 0 && has_eaten_enough(philo))
 	{
-		ptread_mutex_lock(philo->main->finished_meal);
+		pthread_mutex_lock(&philo->main->finished_meal);
 		philo->main->nb_finished_meal = philo->main->nb_finished_meal + 1;
-		ptread_mutex_unlock(philo->main->finished_meal);
+		pthread_mutex_unlock(&philo->main->finished_meal);
 	}
+}
+
+static void	think(t_philo *philo)
+{
+	philo->status = THINKING;
+	select_message(philo);
 }
 
 void	philo_cycle(t_philo *philo)
 {
 	lock_forks(philo);
 	eat(philo);
-	unlock_fork(philo);
+	unlock_forks(philo);
 	think(philo);
 	usleep(100);
 }

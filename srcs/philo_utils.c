@@ -49,8 +49,6 @@ int	is_alive(t_philo *philo)
 
 int	is_hungry(t_philo *philo)
 {
-	long	now;
-
 	if (philo->meal_taken < philo->main->nb_meal)
 		return (1);
 	return (0);

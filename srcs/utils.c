@@ -80,7 +80,9 @@ long	elapsed_time(long starter)
 long	ft_time(void)
 {
 	struct timeval	tv;
+	long			end;
 
 	gettimeofday(&tv, NULL);
-	return ((((long)tv.tv_sec) * 1000) + (tv.tv_usec / 1000));
+	end = ((tv.tv_sec * 1000) + tv.tv_usec / 1000);
+	return (end);
 }

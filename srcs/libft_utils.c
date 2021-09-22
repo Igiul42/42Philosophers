@@ -39,6 +39,19 @@ int	ft_atoi(const char *nptr)
 	return (res * sign);
 }
 
+static int	ft_nbrsize(long n)
+{
+	unsigned int	size;
+
+	size = 1;
+	while (n >= 10)
+	{
+		n = n / 10;
+		size++;
+	}
+	return (size);
+}
+
 char	*ft_itoa(long n)
 {
 	char	*str;

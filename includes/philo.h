@@ -58,5 +58,10 @@ void	select_message(t_philo *philo);
 int		init(t_main *main, int argc, char **argv);
 /*		cycle.c				*/
 void	philo_cycle(t_philo *philo);
+/*		philo_utils.c		*/
+int		is_dead(t_philo *philo);
+int		is_hungry(t_philo *philo);
+int		is_alive(t_philo *philo);
+void	ft_usleep(int time);
 
 #endif

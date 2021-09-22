@@ -30,7 +30,7 @@ int	init_philos(t_main	*main)
 	int	i;
 
 	i = -1;
-	main->philo = malloc(sizeof(pthread_mutex_t) * main->nb_philo);
+	main->philo = malloc(sizeof(t_philo) * main->nb_philo);
 	if (!main->philo)
 		return (0);
 	while (++i < main->nb_philo)
