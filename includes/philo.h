@@ -63,5 +63,8 @@ int		is_dead(t_philo *philo);
 int		is_hungry(t_philo *philo);
 int		is_alive(t_philo *philo);
 void	ft_usleep(int time);
+/*		monitoring.c		*/
+void	meal_and_death_monitor(t_main *main);
+void	death_monitor(t_main *main);
 
 #endif

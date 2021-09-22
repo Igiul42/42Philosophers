@@ -70,15 +70,17 @@ void	launch_threads(t_main *main)
 void	launch_monitoring(t_main *main)
 {
 	if (main->nb_meal > 0)
-		meal_and_death_monitoring(main);
+		meal_and_death_monitor(main);
 	else
-		death_monitoring(main);
+		death_monitor(main);
 }
 
 int	main(int argc, char **argv)
 {
 	t_main	main;
 
+	printf("\n\t 42_PHILOSOPHERS \n\n");
+	
 	if (argc >= 5 && argc <= 6)
 	{
 		if (!init(&main, argc, argv))
