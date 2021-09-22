@@ -67,6 +67,14 @@ void	launch_threads(t_main *main)
 	}
 }
 
+void	launch_monitoring(t_main *main)
+{
+	if (main->nb_meal > 0)
+		meal_and_death_monitoring(main);
+	else
+		death_monitoring(main);
+}
+
 int	main(int argc, char **argv)
 {
 	t_main	main;
@@ -79,7 +87,7 @@ int	main(int argc, char **argv)
 			return (1);
 		}
 		launch_threads(&main);
-		//launch_monitoring(&main);
+		launch_monitoring(&main);
 		//free_all(&main);
 	}
 	else
