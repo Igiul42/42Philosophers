@@ -7,6 +7,7 @@
 # include <stdlib.h>
 # include <time.h>
 # include <sys/time.h>
+# include <errno.h>
 
 typedef enum e_status
 {
@@ -66,5 +67,7 @@ void	ft_usleep(int time);
 /*		monitoring.c		*/
 void	meal_and_death_monitor(t_main *main);
 void	death_monitor(t_main *main);
+/*		free.c				*/
+void	free_all(t_main *main);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ldalle-a <ldalle-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 16:43:12 by ldalle-a          #+#    #+#             */
-/*   Updated: 2021/09/20 11:58:21 by ldalle-a         ###   ########.fr       */
+/*   Updated: 2021/09/24 10:58:40 by ldalle-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,11 @@ void	*routine(void *arg)
 
 	philo = (t_philo *)arg;
 	if (pthread_create(&death, NULL, &death_watch, philo) != 0)
-		printf("Failed create thread"); //sistemare il return
+	{
+		free_all(philo->main);
+		return ((void *)0);
+	}
+	pthread_detach(death);
 	if (philo->main->nb_meal > 0)
 		while (is_alive(philo) && is_hungry(philo))
 			philo_cycle(philo);
@@ -61,7 +65,7 @@ void	launch_threads(t_main *main)
 	{	
 		philo = &main->philo[i];
 		if (pthread_create(&main_thread, NULL, &routine, (void *)philo) != 0)
-			printf("Failed create main thread");//sistemare il return
+			return (free_all(main));
 		pthread_detach(main_thread);
 		usleep(100);
 	}
@@ -90,7 +94,7 @@ int	main(int argc, char **argv)
 		}
 		launch_threads(&main);
 		launch_monitoring(&main);
-		//free_all(&main);
+		free_all(&main);
 	}
 	else
 	{
