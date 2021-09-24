@@ -4,7 +4,7 @@ void	death_monitor(t_main *main)
 {
 	while (!main->dead_found)
 		usleep(100);
-	printf("\n\t PHILO SHOULDN'T DIE \n\n");
+	printf("\033[0;31m\n\t PHILO SHOULDN'T DIE \n\n\033[0m");
 }
 
 void	meal_and_death_monitor(t_main *main)

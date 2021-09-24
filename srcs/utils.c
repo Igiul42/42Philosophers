@@ -6,7 +6,7 @@
 /*   By: ldalle-a <ldalle-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 16:43:16 by ldalle-a          #+#    #+#             */
-/*   Updated: 2021/09/24 11:21:33 by ldalle-a         ###   ########.fr       */
+/*   Updated: 2021/09/24 11:38:54 by ldalle-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	print_message(t_philo *philo, char *status, int i, int j)
 
 	pthread_mutex_lock(&philo->main->printer);
 	id = ft_itoa(philo->id);
-	time = ft_itoa(elapsed_time(philo->start_eat));
+	time = ft_itoa(elapsed_time(philo->main->start_time));
 	while (time[j])
 		message[i++] = time[j++];
 	message[i++] = '\t';

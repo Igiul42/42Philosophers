@@ -6,7 +6,7 @@
 /*   By: ldalle-a <ldalle-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 16:43:12 by ldalle-a          #+#    #+#             */
-/*   Updated: 2021/09/24 11:20:45 by ldalle-a         ###   ########.fr       */
+/*   Updated: 2021/09/24 11:29:29 by ldalle-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	main(int argc, char **argv)
 {
 	t_main	main;
 
-	printf("\n\t 42_PHILOSOPHERS \n\n");
+	printf("\033[0;32m\n\t 42_PHILOSOPHERS \033[0m\n\n");
 	if (argc >= 5 && argc <= 6)
 	{
 		if (!init(&main, argc, argv))
