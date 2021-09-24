@@ -6,7 +6,7 @@
 /*   By: ldalle-a <ldalle-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 16:42:56 by ldalle-a          #+#    #+#             */
-/*   Updated: 2021/09/20 12:01:07 by ldalle-a         ###   ########.fr       */
+/*   Updated: 2021/09/24 11:18:15 by ldalle-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	init_forks(t_main *main)
 	main->forks = malloc(sizeof(pthread_mutex_t) * main->nb_philo);
 	if (!main->forks)
 	{
-		//free_philo(main);
+		free_philo(main);
 		return (0);
 	}
 	return (1);

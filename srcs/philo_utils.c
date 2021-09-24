@@ -6,7 +6,7 @@
 /*   By: ldalle-a <ldalle-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 11:24:38 by ldalle-a          #+#    #+#             */
-/*   Updated: 2021/09/20 12:37:03 by ldalle-a         ###   ########.fr       */
+/*   Updated: 2021/09/24 11:17:29 by ldalle-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,13 @@ int	is_alive(t_philo *philo)
 int	is_hungry(t_philo *philo)
 {
 	if (philo->meal_taken < philo->main->nb_meal)
+		return (1);
+	return (0);
+}
+
+int	has_eaten_enough(t_philo *philo)
+{
+	if (philo->meal_taken == philo->main->nb_meal)
 		return (1);
 	return (0);
 }

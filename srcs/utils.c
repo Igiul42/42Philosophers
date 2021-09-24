@@ -6,7 +6,7 @@
 /*   By: ldalle-a <ldalle-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 16:43:16 by ldalle-a          #+#    #+#             */
-/*   Updated: 2021/09/20 12:05:51 by ldalle-a         ###   ########.fr       */
+/*   Updated: 2021/09/24 11:21:33 by ldalle-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	print_message(t_philo *philo, char *status, int i, int j)
 		|| !philo->main->dead_found)
 		write(1, message, i);
 	pthread_mutex_unlock(&philo->main->printer);
-	free_message_data(id, time);//da implementare
+	free_message_data(id, time);
 }
 
 void	select_message(t_philo	*philo)

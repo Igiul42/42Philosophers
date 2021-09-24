@@ -64,10 +64,12 @@ int		is_dead(t_philo *philo);
 int		is_hungry(t_philo *philo);
 int		is_alive(t_philo *philo);
 void	ft_usleep(int time);
+int		has_eaten_enough(t_philo *philo);
 /*		monitoring.c		*/
 void	meal_and_death_monitor(t_main *main);
 void	death_monitor(t_main *main);
 /*		free.c				*/
 void	free_all(t_main *main);
+void	free_philo(t_main *main);
 
 #endif
