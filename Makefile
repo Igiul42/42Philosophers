@@ -2,7 +2,7 @@ NAME	=	philo
 
 CC		=	gcc
 
-FLAG	=	-Wall -Wextra #-Werror
+FLAG	=	-Wall -Wextra -Werror
 
 LIB		=	-pthread
 
